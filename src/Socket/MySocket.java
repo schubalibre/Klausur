@@ -1,16 +1,16 @@
 package Socket;
 
-import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.Socket;
-import java.net.SocketException;
 
 
 public class MySocket {
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		
 		if(args.length < 4) 
 			new Exception();
@@ -18,24 +18,27 @@ public class MySocket {
 		String ip = args[0];
 		int port = Integer.parseInt(args[1]);
 		
-		Socket in = new Socket(ip, port);
-		BufferedInputStream socketinput = new BufferedInputStream(in.getInputStream());
-		PrintStream positiveOutput = new PrintStream(new FileOutputStream(args[2]));
-		PrintStream negativOutput = new PrintStream(new FileOutputStream(args[2]));
-		
-		try{
+		BufferedReader bf = null;
+		PrintStream positiveOutput = null;
+		PrintStream negativOutput = null;
+		try {
+			Socket in = new Socket(ip, port);
+			InputStreamReader socketinput = new InputStreamReader(in.getInputStream());
+			bf = new BufferedReader(socketinput);
+			positiveOutput = new PrintStream(new FileOutputStream(args[2]));
+			negativOutput = new PrintStream(new FileOutputStream(args[2]));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		while(true){
-			String text = socketinput.readline();
+			String text = bf.readLine();
 			if(isPositiv(text))
 				positiveOutput.println(text);
 			else negativOutput.println(text);
 			
 			}
-		}catch(SocketException ex){
-			System.exit(0);
-		}catch(IOException ex){
-		
-		}
 	}
 
 	private static boolean isPositiv(String text) {

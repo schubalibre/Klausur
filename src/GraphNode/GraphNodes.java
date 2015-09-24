@@ -25,8 +25,8 @@ public class GraphNodes implements GraphNodesInterface{
 
 	@Override
 	public int getNode(String name) throws NodeNotFoundException {
-		// TODO Auto-generated method stub
-		return 0;
+		if(nodes.contains(name)) throw new NodeNotFoundException();
+		return nodes.indexOf(name);
 	}
 
 	@Override
