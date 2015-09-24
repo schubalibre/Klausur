@@ -1,8 +1,11 @@
 package Socket;
 
 import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.Socket;
 import java.net.SocketException;
@@ -18,23 +21,30 @@ public class MySocket {
 		String ip = args[0];
 		int port = Integer.parseInt(args[1]);
 		
-		Socket in = new Socket(ip, port);
-		BufferedInputStream socketinput = new BufferedInputStream(in.getInputStream());
-		PrintStream positiveOutput = new PrintStream(new FileOutputStream(args[2]));
-		PrintStream negativOutput = new PrintStream(new FileOutputStream(args[2]));
+		Socket in;
+		BufferedReader socketinput;
+		PrintStream positiveOutput;
+		PrintStream negativOutput;
 		
-		try{
-		while(true){
-			String text = socketinput.readline();
+		try {
+			in = new Socket(ip, port);
+			socketinput = new BufferedReader( new InputStreamReader( in.getInputStream() ) );
+			positiveOutput = new PrintStream(new FileOutputStream(args[2]));
+			negativOutput = new PrintStream(new FileOutputStream(args[2]));
+			
+			String text = socketinput.readLine();
+			
 			if(isPositiv(text))
 				positiveOutput.println(text);
 			else negativOutput.println(text);
-			
-			}
+
 		}catch(SocketException ex){
 			System.exit(0);
-		}catch(IOException ex){
-		
+		}catch(FileNotFoundException e) {
+			e.printStackTrace();
+		}catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
