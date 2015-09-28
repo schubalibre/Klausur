@@ -23,8 +23,7 @@ public class MySocket {
 		PrintStream negativOutput = null;
 		try {
 			Socket in = new Socket(ip, port);
-			InputStreamReader socketinput = new InputStreamReader(in.getInputStream());
-			bf = new BufferedReader(socketinput);
+			bf = new BufferedReader(new InputStreamReader(in.getInputStream()));
 			positiveOutput = new PrintStream(new FileOutputStream(args[2]));
 			negativOutput = new PrintStream(new FileOutputStream(args[2]));
 		} catch (IOException e) {
