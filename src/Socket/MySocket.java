@@ -17,7 +17,7 @@ public class MySocket {
 			
 		String ip = args[0];
 		int port = Integer.parseInt(args[1]);
-		
+
 		BufferedReader bf = null;
 		PrintStream positiveOutput = null;
 		PrintStream negativOutput = null;
@@ -37,7 +37,7 @@ public class MySocket {
 				positiveOutput.println(text);
 			else negativOutput.println(text);
 			
-			}
+		}
 	}
 
 	private static boolean isPositiv(String text) {
