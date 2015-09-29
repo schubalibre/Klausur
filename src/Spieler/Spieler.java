@@ -18,8 +18,7 @@ public class Spieler{
 		try {
 			ServerSocket server = new ServerSocket(port);
 			Socket socketIn = server.accept();
-			in = new ObjectInputStream(socketIn.getInputStream());
-					
+			in = new ObjectInputStream(socketIn.getInputStream());		
 			Socket socketOut = new Socket(ip,port);
 			out = new ObjectOutputStream(socketOut.getOutputStream());
 			

@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class SteuerBuerger implements SteuerBuergerInterface {
 	
-	Map<Integer, Person> steuerBuergerMap = new HashMap<>();
+	private Map<Integer, Person> steuerBuergerMap = new HashMap<>();
 	
 	@Override
 	public int addSteuerBuerger(Person buerger) throws DuplicateEntryException {

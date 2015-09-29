@@ -6,11 +6,11 @@ import java.util.Map.Entry;
 
 public class SteuerBuerger2 implements SteuerBuergerInterface {
 	
-	Map<Integer, Person> steuerBuergerMap = new HashMap<>();
+	private Map<Integer, Person> steuerBuergerMap = new HashMap<>();
 	
 	@Override
 	public int addSteuerBuerger(Person buerger) throws DuplicateEntryException {
-		int steuernummer = this.anzahlSteuerBuerger() + 1;
+		int steuernummer = this.anzahlSteuerBuerger();
 		if(steuerBuergerMap.containsKey(steuernummer)) throw new DuplicateEntryException();
 		steuerBuergerMap.put(steuernummer, buerger);
 		return steuernummer;

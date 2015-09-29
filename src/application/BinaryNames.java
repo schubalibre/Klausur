@@ -13,19 +13,7 @@ import java.util.HashSet;
 public class BinaryNames {
 	
 	public static void main(String[] args) {
-			try {
-				
-				DataOutputStream out = new DataOutputStream(new FileOutputStream("names.bin"));
-				
-				out.writeUTF("hallo");
 
-				out.close();
-				
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
 			int num = findeDoppelteNamen("names.bin");
 			
 			System.out.println("Es waren " + num + " doppelte Namen in der Datei.");

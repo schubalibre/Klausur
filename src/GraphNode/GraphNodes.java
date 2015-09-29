@@ -5,8 +5,8 @@ import java.util.HashMap;
 
 
 public class GraphNodes implements GraphNodesInterface{
-	HashMap<String, Integer> indices = new HashMap<String, Integer>();
-	ArrayList<String> nodes = new ArrayList<>();
+	private HashMap<String, Integer> indices = new HashMap<String, Integer>();
+	private ArrayList<String> nodes = new ArrayList<>();
 
 	@Override
 	public int addNode(String name) throws DuplicateNameException {
